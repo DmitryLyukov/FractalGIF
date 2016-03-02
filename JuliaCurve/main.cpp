@@ -89,7 +89,7 @@ void painting_thread(std::atomic<int64_t> &atom_cnt) {
         
         const double dAlpha = 2 * 3.14159265358979323846 / num_of_pict;
         const double t      = j * dAlpha;
-        const double re     = 0.5 * cos(t) - 0.25 * cos(2 * t);
+        const double re     = 0.5 * cos(t) - 0.25 * cos(2 * t);  //parametric equations of a curve
         const double im     = 0.5 * sin(t) - 0.25 * sin(2 * t);
         
         std::string str = std::to_string(j);
