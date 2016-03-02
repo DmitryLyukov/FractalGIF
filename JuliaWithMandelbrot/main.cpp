@@ -104,12 +104,12 @@ void painting(const double x1, const double x2,
     img.draw_line(0, height / 2 - 1, width - 1, height / 2 - 1, black);
     img.draw_line(0, height / 2    , width - 1, height / 2    , black);
     
-    y = 1.4;
-    const double dy_m = 2.8 / ((height - 2) / 2);
-    const double dx_m = 3. / width;
+    y = 1.3;
+    const double dy_m = 2.6 / ((height - 2) / 2);
+    const double dx_m = 3.68 / width;
     
     for (size_t i = 0; i < (height - 2) / 4; ++i) {
-        double x = -2;
+        double x = -2.4;
         
         for (size_t j = 0; j < width; ++j) {
             const double norm_clr = 1 - iter_for_mand(x, y) / 500.;
@@ -131,7 +131,7 @@ void painting(const double x1, const double x2,
         y -= dy_m;
     }
     
-    size_t a = static_cast<size_t>((re + 2) / 3. * width);
+    size_t a = static_cast<size_t>((re + 2.4) / 3.68 * width);
     size_t b = height / 2 + 1 + static_cast<size_t>((1.4 - im) / 2.8 * height / 2);
     
     const unsigned char red[] = { 255,0,0 };
