@@ -79,8 +79,8 @@ void painting_thread(std::atomic<int64_t> &atom_cnt) {
         if (j >= PICT_CNT) {
             break;
         }
-        const long double x = -0.5458332724372;
-        const long double y = 0.48859180522194;
+        const long double x = -0.55040561843894;
+        const long double y = -0.62735213178491;
         
         const long double x1 = x - (x + 2.) * pow(ZOOM_CF, j);
         const long double x2 = x + (1. - x) * pow(ZOOM_CF, j);
