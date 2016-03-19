@@ -2,6 +2,7 @@
 #include <cmath>
 #include <complex>
 #include <cstdint>
+#include <cstdlib>
 #include <iostream>
 #include <string>
 
@@ -106,17 +107,26 @@ void painting_thread(std::atomic<int64_t> &atom_cnt) {
 
 int main(int argc, char* argv[]) {
     
+    size_t num_of_threads;
+    if (argc > 1) {
+        num_of_threads = atol(argv[1]);
+    } else {
+        num_of_threads = std::thread::hardware_concurrency();
+    }
+    if (num_of_threads == 0) {
+        num_of_threads = 1;
+    }
+
     std::atomic<int64_t> atom_cnt(0);
     
-    std::thread thread1(painting_thread, std::ref(atom_cnt));
-    std::thread thread2(painting_thread, std::ref(atom_cnt));
-    std::thread thread3(painting_thread, std::ref(atom_cnt));
-    std::thread thread4(painting_thread, std::ref(atom_cnt));
-
-    thread1.join();
-    thread2.join();
-    thread3.join();
-    thread4.join(); 
+    std::vector<std::thread> threads;
+    for (size_t i = 0; i < num_of_threads; ++i) {
+        threads.push_back(std::thread (painting_thread, std::ref(atom_cnt)));
+    }
+    
+    for (auto& thr: threads) {
+        thr.join();
+    }
         
     return 0;
 }
